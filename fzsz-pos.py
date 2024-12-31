@@ -14,7 +14,7 @@ scaler = joblib.load('scaler.pkl')
 feature_names = [ "female_age", " E2 ", "AFC ", "Gn_arv", "HCG_E2", "HCG_P", "HCG_neimohoudu ", " Freq"]
 
 ## Streamlit user interface
-st.title("fzsz Predictor")
+st.title("IVF Predictor")
 
 female_age = st.number_input("Female age:", min_value=18, max_value=100, value=30)
 E2= st.number_input("E2 (pg/ml):", min_value=0.00, max_value=500.00, value=150.00)
@@ -46,20 +46,20 @@ if st.button("Predict"):
     
     if predicted_class == 1:       
         advice = (
-            f"According to our model, you have a high risk of heart disease. "          
-            f"The model predicts that your probability of having LCOS is {probability:.1f}%. "            
-            "While this is just an estimate, it suggests that you may be at significant risk. "           
-            "I recommend that you consult a cardiologist as soon as possible for further evaluation and "            
-            "to ensure you receive an accurate diagnosis and necessary treatment."
-        )   
-    else:        
-        advice = (
-            f"According to our model, you have a low risk of heart disease. "            
-            f"The model predicts that your probability of not having heart disease is {probability:.1f}%. "            
+            f"According to our model, your probability of having a successful pregnancy is {probability:.1f}%. "
             "However, maintaining a healthy lifestyle is still very important. "            
-            "I recommend regular check-ups to monitor your heart health, "            
+            "I recommend regular check-ups to monitor your health, "            
             "and to seek medical advice promptly if you experience any symptoms." 
         )
+
+              
+    else:        
+        advice = (
+            f"According to our model, your probability of not having a successful pregnancy is {probability:.1f}%. "            
+            "While this is just an estimate,it suggests that your probability of successful pregnancy are low."              
+            "I recommend that you consult a specialist as soon as possible for further evaluation and "            
+            "to ensure you receive an accurate diagnosis and necessary treatment."
+        )   
         
     st.write(advice)
 
